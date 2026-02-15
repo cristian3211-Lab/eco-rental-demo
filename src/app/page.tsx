@@ -276,8 +276,8 @@ export default function Home() {
           </FadeIn>
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.12}>
             {benefits.map((benefit) => (
-              <StaggerItem key={benefit.title}>
-                <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+              <StaggerItem key={benefit.title} className="h-full">
+                <div className="h-full rounded-2xl bg-white p-8 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
                   <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
                     <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" d={benefit.icon} />
