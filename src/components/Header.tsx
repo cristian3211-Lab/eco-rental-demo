@@ -129,7 +129,7 @@ export default function Header() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden fixed inset-0 top-18 bg-white z-40 overflow-y-auto"
+            className="md:hidden fixed top-[72px] right-0 bottom-0 left-0 bg-white z-40 overflow-y-auto"
           >
             <div className="px-6 py-8">
               {navigation.map((item, i) => {
