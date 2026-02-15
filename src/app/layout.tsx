@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScroll from "@/components/SmoothScroll";
+import { QuoteProvider } from "@/components/QuoteContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -50,12 +51,14 @@ export default function RootLayout({
         >
           Ir al contenido principal
         </a>
-        <SmoothScroll>
-          <Header />
-          <main id="main-content">{children}</main>
-          <Footer />
-          <WhatsAppButton />
-        </SmoothScroll>
+        <QuoteProvider>
+          <SmoothScroll>
+            <Header />
+            <main id="main-content">{children}</main>
+            <Footer />
+            <WhatsAppButton />
+          </SmoothScroll>
+        </QuoteProvider>
       </body>
     </html>
   );

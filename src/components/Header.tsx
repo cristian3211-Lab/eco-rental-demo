@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useQuote } from "@/components/QuoteContext";
 
 const navigation = [
   { name: "Inicio", href: "/" },
-  { name: "Nosotros", href: "#nosotros" },
+  { name: "Nosotros", href: "/#nosotros" },
   { name: "Maquinaria", href: "/catalogo" },
   { name: "Contacto", href: "/contacto" },
 ];
@@ -14,6 +15,7 @@ const navigation = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { openQuote } = useQuote();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -69,12 +71,12 @@ export default function Header() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
           >
-            <Link
-              href="/contacto"
-              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg"
+            <button
+              onClick={openQuote}
+              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg cursor-pointer"
             >
               Cotizar Ahora
-            </Link>
+            </button>
           </motion.div>
         </div>
 
@@ -127,13 +129,15 @@ export default function Header() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <Link
-                  href="/contacto"
-                  className="mt-3 block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark"
-                  onClick={() => setMobileOpen(false)}
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    openQuote();
+                  }}
+                  className="mt-3 w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark cursor-pointer"
                 >
                   Cotizar Ahora
-                </Link>
+                </button>
               </motion.div>
             </div>
           </motion.div>

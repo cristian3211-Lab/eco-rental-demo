@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -22,20 +22,19 @@ export default function CountUp({
   className = "",
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [hasAnimated, setHasAnimated] = useState(false);
+  const triggerRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el || hasAnimated) return;
+    if (!el) return;
 
     const obj = { value: 0 };
 
-    ScrollTrigger.create({
+    const trigger = ScrollTrigger.create({
       trigger: el,
       start: "top 85%",
       once: true,
       onEnter: () => {
-        setHasAnimated(true);
         gsap.to(obj, {
           value: end,
           duration,
@@ -47,10 +46,12 @@ export default function CountUp({
       },
     });
 
+    triggerRef.current = trigger;
+
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      triggerRef.current?.kill();
     };
-  }, [end, suffix, prefix, duration, hasAnimated]);
+  }, [end, suffix, prefix, duration]);
 
   return (
     <span ref={ref} className={className}>

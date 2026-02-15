@@ -7,6 +7,7 @@ import StaggerContainer, { StaggerItem } from "@/components/animations/StaggerCo
 import MagneticButton from "@/components/animations/MagneticButton";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import CountUp from "@/components/animations/CountUp";
+import QuoteButton from "@/components/QuoteButton";
 
 const categories = [
   {
@@ -139,12 +140,9 @@ export default function Home() {
                 className="mt-10 flex flex-col sm:flex-row gap-4"
               >
                 <MagneticButton>
-                  <Link
-                    href="/contacto"
-                    className="block rounded-lg bg-primary px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark hover:shadow-xl"
-                  >
+                  <QuoteButton className="block rounded-lg bg-primary px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark hover:shadow-xl">
                     Cotizar Ahora
-                  </Link>
+                  </QuoteButton>
                 </MagneticButton>
                 <MagneticButton>
                   <Link
@@ -292,12 +290,9 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <MagneticButton>
-                <Link
-                  href="/contacto"
-                  className="block rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark"
-                >
+                <QuoteButton className="block rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark">
                   Solicitar Cotización
-                </Link>
+                </QuoteButton>
               </MagneticButton>
               <MagneticButton>
                 <a

@@ -23,6 +23,7 @@ export default function ScrollReveal({
   duration = 1,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<ScrollTrigger | null>(null);
 
   useEffect(() => {
     const el = ref.current;
@@ -55,7 +56,7 @@ export default function ScrollReveal({
 
     gsap.set(el, anim.from);
 
-    gsap.to(el, {
+    const tween = gsap.to(el, {
       ...anim.to,
       duration,
       delay,
@@ -69,8 +70,10 @@ export default function ScrollReveal({
       },
     });
 
+    triggerRef.current = tween.scrollTrigger ?? null;
+
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      triggerRef.current?.kill();
     };
   }, [animation, delay, duration]);
 

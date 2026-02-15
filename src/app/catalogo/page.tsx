@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import QuoteButton from "@/components/QuoteButton";
 
 type Machine = {
   id: number;
@@ -178,12 +179,9 @@ export default function CatalogoPage() {
 
                   {/* Actions */}
                   <div className="mt-6 flex gap-3">
-                    <Link
-                      href="/contacto"
-                      className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-                    >
+                    <QuoteButton className="flex-1 rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark">
                       Cotizar
-                    </Link>
+                    </QuoteButton>
                     <button className="flex-1 rounded-lg border border-gray-300 px-4 py-2.5 text-sm font-semibold text-gray-700 transition-colors hover:bg-gray-50">
                       Más Info
                     </button>
