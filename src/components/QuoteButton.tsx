@@ -13,7 +13,7 @@ export default function QuoteButton({
   const { openQuote } = useQuote();
 
   return (
-    <button onClick={openQuote} className={`cursor-pointer ${className}`}>
+    <button onClick={() => openQuote()} className={`cursor-pointer ${className}`}>
       {children}
     </button>
   );

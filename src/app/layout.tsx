@@ -19,14 +19,24 @@ export const metadata: Metadata = {
     template: "%s | Eco-Rental",
   },
   description:
-    "Arriendo de maquinaria pesada en Chile. Excavadoras, rodillos, motoniveladoras con operadores certificados y soporte 24/7.",
+    "Arriendo de maquinaria pesada en Chile. Excavadoras, rodillos, motoniveladoras, bulldozer, retroexcavadoras y transporte con operadores certificados y soporte 24/7.",
   keywords: [
     "arriendo maquinaria pesada",
+    "arriendo maquinaria Chile",
     "excavadoras Chile",
     "rodillos compactadores",
     "motoniveladoras",
     "retroexcavadoras",
+    "bulldozer arriendo",
+    "minicargadores",
+    "transporte maquinaria",
     "arriendo equipos construcción",
+    "maquinaria minería Chile",
+    "arriendo equipos forestales",
+    "Caterpillar arriendo",
+    "Volvo maquinaria Chile",
+    "SANY Chile",
+    "eco-rental",
   ],
   openGraph: {
     title: "Eco-Rental | Arriendo de Maquinaria Pesada en Chile",
@@ -34,6 +44,18 @@ export const metadata: Metadata = {
       "Más de 20 años de experiencia en arriendo de maquinaria pesada para minería, construcción y sector forestal.",
     locale: "es_CL",
     type: "website",
+    siteName: "Eco-Rental",
+    url: "https://eco-rental-demo.vercel.app",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Eco-Rental | Arriendo de Maquinaria Pesada en Chile",
+    description:
+      "Arriendo de maquinaria pesada con más de 20 años de experiencia. Operadores certificados y soporte 24/7.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

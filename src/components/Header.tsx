@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "motion/react";
 import { useQuote } from "@/components/QuoteContext";
 
 const navigation = [
   { name: "Inicio", href: "/" },
-  { name: "Nosotros", href: "/#nosotros" },
+  { name: "Nosotros", href: "/nosotros" },
   { name: "Maquinaria", href: "/catalogo" },
   { name: "Contacto", href: "/contacto" },
 ];
@@ -16,12 +17,24 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { openQuote } = useQuote();
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   return (
     <motion.header
@@ -50,29 +63,40 @@ export default function Header() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex md:items-center md:gap-8">
-          {navigation.map((item, i) => (
-            <motion.div
-              key={item.name}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 * i + 0.3 }}
-            >
-              <Link
-                href={item.href}
-                className="relative text-sm font-medium text-gray-700 transition-colors hover:text-primary group"
+          {navigation.map((item, i) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
+            return (
+              <motion.div
+                key={item.name}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 * i + 0.3 }}
               >
-                {item.name}
-                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
-              </Link>
-            </motion.div>
-          ))}
+                <Link
+                  href={item.href}
+                  className={`relative text-sm font-medium transition-colors group ${
+                    isActive ? "text-primary" : "text-gray-700 hover:text-primary"
+                  }`}
+                >
+                  {item.name}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              </motion.div>
+            );
+          })}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
           >
             <button
-              onClick={openQuote}
+              onClick={() => openQuote()}
               className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg cursor-pointer"
             >
               Cotizar Ahora
@@ -83,7 +107,7 @@ export default function Header() {
         {/* Mobile menu button */}
         <button
           type="button"
-          className="md:hidden rounded-md p-2 text-gray-700"
+          className="md:hidden rounded-md p-2.5 text-gray-700 min-w-11 min-h-11 flex items-center justify-center"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
         >
@@ -97,33 +121,40 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - full screen overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden border-t bg-white overflow-hidden"
+            className="md:hidden fixed inset-0 top-18 bg-white z-40 overflow-y-auto"
           >
-            <div className="px-6 py-4">
-              {navigation.map((item, i) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.05 * i }}
-                >
-                  <Link
-                    href={item.href}
-                    className="block py-3 text-base font-medium text-gray-700 hover:text-primary"
-                    onClick={() => setMobileOpen(false)}
+            <div className="px-6 py-8">
+              {navigation.map((item, i) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
+                return (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.05 * i }}
                   >
-                    {item.name}
-                  </Link>
-                </motion.div>
-              ))}
+                    <Link
+                      href={item.href}
+                      className={`block py-4 text-lg font-medium border-b border-gray-100 ${
+                        isActive ? "text-primary" : "text-gray-700 hover:text-primary"
+                      }`}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  </motion.div>
+                );
+              })}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -134,7 +165,7 @@ export default function Header() {
                     setMobileOpen(false);
                     openQuote();
                   }}
-                  className="mt-3 w-full rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark cursor-pointer"
+                  className="mt-6 w-full rounded-lg bg-primary px-5 py-3.5 text-center text-base font-semibold text-white hover:bg-primary-dark cursor-pointer"
                 >
                   Cotizar Ahora
                 </button>

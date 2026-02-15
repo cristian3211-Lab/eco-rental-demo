@@ -8,45 +8,11 @@ import MagneticButton from "@/components/animations/MagneticButton";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import CountUp from "@/components/animations/CountUp";
 import QuoteButton from "@/components/QuoteButton";
-
-const categories = [
-  {
-    name: "Excavadoras",
-    description: "Desde 8 hasta 50 toneladas para todo tipo de excavación",
-    icon: "M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-    specs: "8-50 ton",
-  },
-  {
-    name: "Rodillos",
-    description: "Compactadores vibratorios para caminos y terrenos",
-    icon: "M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12",
-    specs: "3-20 ton",
-  },
-  {
-    name: "Motoniveladoras",
-    description: "Nivelación y mantención de caminos con precisión",
-    icon: "M11.42 15.17l-5.1-5.1a1.5 1.5 0 010-2.12l.88-.88a1.5 1.5 0 012.12 0l2.1 2.1 5.1-5.1a1.5 1.5 0 012.12 0l.88.88a1.5 1.5 0 010 2.12l-5.1 5.1a1.5 1.5 0 01-2.12 0z",
-    specs: "140-250 HP",
-  },
-  {
-    name: "Retroexcavadoras",
-    description: "Versatilidad para carga y excavación en un solo equipo",
-    icon: "M21 7.5l-2.25-1.313M21 7.5v2.25m0-2.25l-2.25 1.313M3 7.5l2.25-1.313M3 7.5l2.25 1.313M3 7.5v2.25m9 3l2.25-1.313M12 12.75l-2.25-1.313M12 12.75V15m0 6.75l2.25-1.313M12 21.75V19.5m0 2.25l-2.25-1.313m0-16.875L12 2.25l2.25 1.313M21 14.25v2.25l-2.25 1.313m-13.5 0L3 16.5v-2.25",
-    specs: "7-10 ton",
-  },
-  {
-    name: "Bulldozer",
-    description: "Movimiento de tierra a gran escala con máxima potencia",
-    icon: "M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5",
-    specs: "150-400 HP",
-  },
-  {
-    name: "Minicargadores",
-    description: "Compactos y versátiles para espacios reducidos",
-    icon: "M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z",
-    specs: "1-3 ton",
-  },
-];
+import FAQ from "@/components/FAQ";
+import { categories } from "@/data/categories";
+import { brands } from "@/data/brands";
+import { industries } from "@/data/industries";
+import { testimonials } from "@/data/testimonials";
 
 const benefits = [
   {
@@ -76,6 +42,13 @@ const stats = [
   { value: 500, suffix: "+", label: "Proyectos completados" },
   { value: 50, suffix: "+", label: "Equipos disponibles" },
   { value: 24, suffix: "/7", label: "Soporte técnico" },
+];
+
+const steps = [
+  { title: "Contacto", description: "Cuéntanos tu proyecto y requerimientos de maquinaria" },
+  { title: "Cotización", description: "Recibe una cotización personalizada en menos de 24 horas" },
+  { title: "Entrega", description: "Desplegamos equipos y operadores certificados en terreno" },
+  { title: "Soporte", description: "Asistencia técnica 24/7 durante toda la operación" },
 ];
 
 export default function Home() {
@@ -203,6 +176,24 @@ export default function Home() {
         </StaggerContainer>
       </section>
 
+      {/* Brand Logos */}
+      <section className="py-12 bg-white border-b border-gray-100">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="text-center text-sm font-medium text-gray-400 mb-8 uppercase tracking-wider">
+            Marcas que manejamos
+          </p>
+          <div className="relative overflow-hidden">
+            <div className="flex animate-marquee gap-16 items-center">
+              {[...brands, ...brands].map((brand, i) => (
+                <span key={`${brand.slug}-${i}`} className="shrink-0 text-2xl font-bold text-gray-300 hover:text-gray-500 transition-colors select-none">
+                  {brand.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Categories - GSAP ScrollReveal */}
       <section className="py-24 bg-white" id="maquinaria">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -245,8 +236,35 @@ export default function Home() {
         </div>
       </section>
 
+      {/* How It Works */}
+      <section className="py-24 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              ¿Cómo Funciona?
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Arrienda maquinaria en 4 simples pasos
+            </p>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.15}>
+            {steps.map((step, i) => (
+              <StaggerItem key={step.title}>
+                <div className="text-center">
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white text-xl font-bold mb-6">
+                    {i + 1}
+                  </div>
+                  <h3 className="text-base font-semibold text-gray-900">{step.title}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{step.description}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
       {/* Benefits - Motion Stagger */}
-      <section className="py-24 bg-gray-50" id="nosotros">
+      <section className="py-24 bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
@@ -277,6 +295,72 @@ export default function Home() {
           </StaggerContainer>
         </div>
       </section>
+
+      {/* Industries */}
+      <section className="py-24 bg-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Industrias que Atendemos
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              Soluciones especializadas para cada sector productivo
+            </p>
+          </FadeIn>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {industries.map((ind, i) => (
+              <ScrollReveal key={ind.name} animation={i % 2 === 0 ? "fadeUp" : "scaleIn"} delay={i * 0.08}>
+                <div className="rounded-2xl border border-gray-200 p-8 transition-all hover:border-primary hover:shadow-lg">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={ind.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">{ind.name}</h3>
+                  <p className="mt-2 text-sm text-gray-600">{ind.description}</p>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-24 bg-gray-50">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <FadeIn className="text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              Lo que dicen nuestros clientes
+            </h2>
+            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              La confianza de nuestros clientes es nuestro mayor respaldo
+            </p>
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8" staggerDelay={0.15}>
+            {testimonials.map((t) => (
+              <StaggerItem key={t.name}>
+                <blockquote className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100">
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="h-5 w-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-sm leading-6 text-gray-600">&ldquo;{t.text}&rdquo;</p>
+                  <div className="mt-6 border-t border-gray-100 pt-4">
+                    <p className="text-sm font-semibold text-gray-900">{t.name}</p>
+                    <p className="text-xs text-gray-500">{t.role} — {t.company}</p>
+                  </div>
+                </blockquote>
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <FAQ />
 
       {/* CTA Section - Parallax */}
       <section className="bg-accent py-20 overflow-hidden">
