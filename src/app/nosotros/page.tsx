@@ -23,7 +23,7 @@ export default function NosotrosPage() {
             Sobre Eco-Rental
           </h1>
           <p className="mt-2 text-gray-300">
-            M\u00e1s de 20 a\u00f1os liderando el arriendo de maquinaria pesada en Chile
+            Más de 20 años liderando el arriendo de maquinaria pesada en Chile
           </p>
         </div>
       </section>
@@ -40,10 +40,10 @@ export default function NosotrosPage() {
                 Experiencia y compromiso desde 2004
               </h2>
               <p className="mt-6 text-lg leading-8 text-gray-600">
-                Eco-Rental nace como respuesta a la necesidad del mercado chileno de contar con un servicio integral de arriendo de maquinaria pesada. Desde nuestros inicios, nos hemos enfocado en ofrecer equipos de primera l\u00ednea con operadores altamente calificados.
+                Eco-Rental nace como respuesta a la necesidad del mercado chileno de contar con un servicio integral de arriendo de maquinaria pesada. Desde nuestros inicios, nos hemos enfocado en ofrecer equipos de primera línea con operadores altamente calificados.
               </p>
               <p className="mt-4 text-lg leading-8 text-gray-600">
-                Con presencia en las principales regiones del pa\u00eds, hemos participado en m\u00e1s de 500 proyectos de miner\u00eda, construcci\u00f3n, agricultura y obras civiles, consolid\u00e1ndonos como un referente en el sector.
+                Con presencia en las principales regiones del país, hemos participado en más de 500 proyectos de minería, construcción, agricultura y obras civiles, consolidándonos como un referente en el sector.
               </p>
             </FadeIn>
 
@@ -52,7 +52,7 @@ export default function NosotrosPage() {
                 <div className="grid grid-cols-2 gap-6">
                   <div className="text-center">
                     <p className="text-4xl font-bold text-primary">20+</p>
-                    <p className="mt-2 text-sm text-gray-300">A\u00f1os de experiencia</p>
+                    <p className="mt-2 text-sm text-gray-300">Años de experiencia</p>
                   </div>
                   <div className="text-center">
                     <p className="text-4xl font-bold text-primary">500+</p>
@@ -78,12 +78,12 @@ export default function NosotrosPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <FadeIn className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Misi\u00f3n, Visi\u00f3n y Valores
+              Misión, Visión y Valores
             </h2>
           </FadeIn>
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Misi\u00f3n */}
+            {/* Misión */}
             <StaggerItem>
               <div className="rounded-2xl bg-white p-8 border border-gray-200 h-full">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -91,14 +91,14 @@ export default function NosotrosPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm0 0v.07M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
                   </svg>
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-gray-900">Misi\u00f3n</h3>
+                <h3 className="mt-5 text-xl font-semibold text-gray-900">Misión</h3>
                 <p className="mt-3 text-gray-600 leading-7">
-                  Proveer soluciones integrales de arriendo de maquinaria pesada, con equipos de alta calidad, operadores certificados y soporte continuo para garantizar el \u00e9xito de cada proyecto.
+                  Proveer soluciones integrales de arriendo de maquinaria pesada, con equipos de alta calidad, operadores certificados y soporte continuo para garantizar el éxito de cada proyecto.
                 </p>
               </div>
             </StaggerItem>
 
-            {/* Visi\u00f3n */}
+            {/* Visión */}
             <StaggerItem>
               <div className="rounded-2xl bg-white p-8 border border-gray-200 h-full">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -107,9 +107,9 @@ export default function NosotrosPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
                 </div>
-                <h3 className="mt-5 text-xl font-semibold text-gray-900">Visi\u00f3n</h3>
+                <h3 className="mt-5 text-xl font-semibold text-gray-900">Visión</h3>
                 <p className="mt-3 text-gray-600 leading-7">
-                  Ser la empresa l\u00edder en arriendo de maquinaria pesada en Chile, reconocida por la calidad de servicio, innovaci\u00f3n tecnol\u00f3gica y compromiso con la seguridad y el medio ambiente.
+                  Ser la empresa líder en arriendo de maquinaria pesada en Chile, reconocida por la calidad de servicio, innovación tecnológica y compromiso con la seguridad y el medio ambiente.
                 </p>
               </div>
             </StaggerItem>
@@ -125,10 +125,10 @@ export default function NosotrosPage() {
                 <h3 className="mt-5 text-xl font-semibold text-gray-900">Valores</h3>
                 <ul className="mt-3 space-y-2">
                   {[
-                    "Seguridad en cada operaci\u00f3n",
+                    "Seguridad en cada operación",
                     "Calidad y excelencia",
                     "Compromiso con el cliente",
-                    "Innovaci\u00f3n constante",
+                    "Innovación constante",
                     "Integridad y transparencia",
                   ].map((valor) => (
                     <li key={valor} className="flex items-center gap-2 text-gray-600">
@@ -201,7 +201,7 @@ export default function NosotrosPage() {
                 Operadores Certificados y Calificados
               </h3>
               <p className="mt-4 text-gray-300 max-w-3xl mx-auto leading-7">
-                Nuestro equipo de operadores cuenta con certificaciones vigentes, evaluaciones psicomotoras y sensoriales, y equipamiento de protecci\u00f3n personal completo. Cada profesional es seleccionado rigurosamente para garantizar la seguridad y eficiencia en cada proyecto.
+                Nuestro equipo de operadores cuenta con certificaciones vigentes, evaluaciones psicomotoras y sensoriales, y equipamiento de protección personal completo. Cada profesional es seleccionado rigurosamente para garantizar la seguridad y eficiencia en cada proyecto.
               </p>
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="rounded-xl bg-white/10 p-6">
@@ -224,15 +224,15 @@ export default function NosotrosPage() {
         <ScrollReveal animation="scaleIn">
           <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-              \u00bfListo para potenciar tu proyecto?
+              ¿Listo para potenciar tu proyecto?
             </h2>
             <p className="mt-4 text-lg text-gray-300">
-              Cont\u00e1ctanos y recibe una cotizaci\u00f3n personalizada
+              Contáctanos y recibe una cotización personalizada
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <MagneticButton>
                 <QuoteButton className="block rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark">
-                  Solicitar Cotizaci\u00f3n
+                  Solicitar Cotización
                 </QuoteButton>
               </MagneticButton>
               <MagneticButton>
