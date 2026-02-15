@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 const navigation = [
   { name: "Inicio", href: "/" },
@@ -12,14 +13,34 @@ const navigation = [
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-sm shadow-sm">
+    <motion.header
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-white/95 backdrop-blur-md shadow-md"
+          : "bg-white/80 backdrop-blur-sm"
+      }`}
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold text-lg">
+          <motion.div
+            className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary text-white font-bold text-lg"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
             E
-          </div>
+          </motion.div>
           <span className="text-xl font-bold text-gray-900">
             Eco<span className="text-primary">Rental</span>
           </span>
@@ -27,21 +48,34 @@ export default function Header() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex md:items-center md:gap-8">
-          {navigation.map((item) => (
-            <Link
+          {navigation.map((item, i) => (
+            <motion.div
               key={item.name}
-              href={item.href}
-              className="text-sm font-medium text-gray-700 transition-colors hover:text-primary"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * i + 0.3 }}
             >
-              {item.name}
-            </Link>
+              <Link
+                href={item.href}
+                className="relative text-sm font-medium text-gray-700 transition-colors hover:text-primary group"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+              </Link>
+            </motion.div>
           ))}
-          <Link
-            href="/contacto"
-            className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
           >
-            Cotizar Ahora
-          </Link>
+            <Link
+              href="/contacto"
+              className="rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-primary-dark hover:shadow-lg"
+            >
+              Cotizar Ahora
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile menu button */}
@@ -62,27 +96,49 @@ export default function Header() {
       </nav>
 
       {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="md:hidden border-t bg-white px-6 py-4">
-          {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className="block py-3 text-base font-medium text-gray-700 hover:text-primary"
-              onClick={() => setMobileOpen(false)}
-            >
-              {item.name}
-            </Link>
-          ))}
-          <Link
-            href="/contacto"
-            className="mt-3 block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark"
-            onClick={() => setMobileOpen(false)}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="md:hidden border-t bg-white overflow-hidden"
           >
-            Cotizar Ahora
-          </Link>
-        </div>
-      )}
-    </header>
+            <div className="px-6 py-4">
+              {navigation.map((item, i) => (
+                <motion.div
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.05 * i }}
+                >
+                  <Link
+                    href={item.href}
+                    className="block py-3 text-base font-medium text-gray-700 hover:text-primary"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                <Link
+                  href="/contacto"
+                  className="mt-3 block rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-semibold text-white hover:bg-primary-dark"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Cotizar Ahora
+                </Link>
+              </motion.div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

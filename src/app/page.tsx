@@ -1,11 +1,12 @@
-import Link from "next/link";
-import type { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Arriendo Maquinaria Pesada en Chile | Eco-Rental",
-  description:
-    "Arriendo de excavadoras, rodillos, motoniveladoras y más. Operadores certificados, soporte 24/7. Cotiza ahora.",
-};
+import Link from "next/link";
+import { motion } from "motion/react";
+import FadeIn from "@/components/animations/FadeIn";
+import StaggerContainer, { StaggerItem } from "@/components/animations/StaggerContainer";
+import MagneticButton from "@/components/animations/MagneticButton";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import CountUp from "@/components/animations/CountUp";
 
 const categories = [
   {
@@ -70,10 +71,10 @@ const benefits = [
 ];
 
 const stats = [
-  { value: "20+", label: "Años de experiencia" },
-  { value: "500+", label: "Proyectos completados" },
-  { value: "50+", label: "Equipos disponibles" },
-  { value: "24/7", label: "Soporte técnico" },
+  { value: 20, suffix: "+", label: "Años de experiencia" },
+  { value: 500, suffix: "+", label: "Proyectos completados" },
+  { value: 50, suffix: "+", label: "Equipos disponibles" },
+  { value: 24, suffix: "/7", label: "Soporte técnico" },
 ];
 
 export default function Home() {
@@ -82,68 +83,132 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative bg-accent pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-accent to-accent-light opacity-90" />
+
+        {/* Animated background shapes */}
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"
+          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute bottom-10 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl"
+          animate={{ x: [0, -20, 0], y: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        />
+
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary-light mb-6">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="inline-block rounded-full bg-primary/20 px-4 py-1.5 text-sm font-medium text-primary-light mb-6"
+              >
                 Líderes en arriendo de maquinaria
-              </span>
-              <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight">
+              </motion.span>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl leading-tight"
+              >
                 Maquinaria pesada para{" "}
-                <span className="text-primary-light">tu proyecto</span>
-              </h1>
-              <p className="mt-6 text-lg leading-8 text-gray-300 max-w-xl">
+                <motion.span
+                  className="text-primary-light inline-block"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.7 }}
+                >
+                  tu proyecto
+                </motion.span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-6 text-lg leading-8 text-gray-300 max-w-xl"
+              >
                 Arriendo de excavadoras, rodillos, motoniveladoras y más.
                 Operadores certificados y soporte técnico 24/7 en todo Chile.
-              </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
-                <Link
-                  href="/contacto"
-                  className="rounded-lg bg-primary px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark hover:shadow-xl"
-                >
-                  Cotizar Ahora
-                </Link>
-                <Link
-                  href="/catalogo"
-                  className="rounded-lg border-2 border-white/30 px-8 py-3.5 text-center text-base font-semibold text-white transition-all hover:bg-white/10"
-                >
-                  Ver Catálogo
-                </Link>
-              </div>
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="mt-10 flex flex-col sm:flex-row gap-4"
+              >
+                <MagneticButton>
+                  <Link
+                    href="/contacto"
+                    className="block rounded-lg bg-primary px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark hover:shadow-xl"
+                  >
+                    Cotizar Ahora
+                  </Link>
+                </MagneticButton>
+                <MagneticButton>
+                  <Link
+                    href="/catalogo"
+                    className="block rounded-lg border-2 border-white/30 px-8 py-3.5 text-center text-base font-semibold text-white transition-all hover:bg-white/10"
+                  >
+                    Ver Catálogo
+                  </Link>
+                </MagneticButton>
+              </motion.div>
             </div>
-            <div className="hidden lg:flex items-center justify-center">
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+              className="hidden lg:flex items-center justify-center"
+            >
               <div className="relative w-full max-w-md aspect-square rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center">
-                <svg className="w-48 h-48 text-primary-light/60" fill="none" viewBox="0 0 24 24" strokeWidth={0.5} stroke="currentColor">
+                <motion.svg
+                  className="w-48 h-48 text-primary-light/60"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={0.5}
+                  stroke="currentColor"
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 00-3.213-9.193 2.056 2.056 0 00-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 00-10.026 0 1.106 1.106 0 00-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
-                </svg>
-                <div className="absolute -top-4 -right-4 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-lg">
+                </motion.svg>
+                <motion.div
+                  className="absolute -top-4 -right-4 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white shadow-lg"
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1, type: "spring", stiffness: 200 }}
+                >
                   +50 Equipos
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
+      {/* Stats - GSAP CountUp */}
       <section className="relative -mt-8 z-10 mx-auto max-w-5xl px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-4" staggerDelay={0.15}>
           {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="rounded-xl bg-white p-6 text-center shadow-lg border border-gray-100"
-            >
-              <p className="text-3xl font-bold text-primary">{stat.value}</p>
-              <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
-            </div>
+            <StaggerItem key={stat.label}>
+              <div className="rounded-xl bg-white p-6 text-center shadow-lg border border-gray-100">
+                <p className="text-3xl font-bold text-primary">
+                  <CountUp end={stat.value} suffix={stat.suffix} duration={2.5} />
+                </p>
+                <p className="mt-1 text-sm text-gray-600">{stat.label}</p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </section>
 
-      {/* Categories */}
+      {/* Categories - GSAP ScrollReveal */}
       <section className="py-24 bg-white" id="maquinaria">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <FadeIn className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               Nuestra Maquinaria
             </h2>
@@ -151,92 +216,102 @@ export default function Home() {
               Amplio catálogo de equipos para minería, construcción y sector
               forestal
             </p>
-          </div>
+          </FadeIn>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {categories.map((cat) => (
-              <Link
+            {categories.map((cat, i) => (
+              <ScrollReveal
                 key={cat.name}
-                href="/catalogo"
-                className="group rounded-2xl border border-gray-200 p-8 transition-all hover:border-primary hover:shadow-lg"
+                animation={i % 2 === 0 ? "fadeUp" : "scaleIn"}
+                delay={i * 0.1}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
-                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={cat.icon} />
-                  </svg>
-                </div>
-                <h3 className="mt-4 text-lg font-semibold text-gray-900">
-                  {cat.name}
-                </h3>
-                <p className="mt-2 text-sm text-gray-600">{cat.description}</p>
-                <span className="mt-3 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
-                  {cat.specs}
-                </span>
-              </Link>
+                <Link
+                  href="/catalogo"
+                  className="group block rounded-2xl border border-gray-200 p-8 transition-all hover:border-primary hover:shadow-lg"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                    <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={cat.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold text-gray-900">
+                    {cat.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">{cat.description}</p>
+                  <span className="mt-3 inline-block rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                    {cat.specs}
+                  </span>
+                </Link>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Benefits - Motion Stagger */}
       <section className="py-24 bg-gray-50" id="nosotros">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <FadeIn className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               ¿Por qué elegirnos?
             </h2>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
               Respaldados por más de 20 años de experiencia en el sector
             </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          </FadeIn>
+          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" staggerDelay={0.12}>
             {benefits.map((benefit) => (
-              <div
-                key={benefit.title}
-                className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 text-center"
-              >
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
-                  <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d={benefit.icon} />
-                  </svg>
+              <StaggerItem key={benefit.title}>
+                <div className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
+                  <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={benefit.icon} />
+                    </svg>
+                  </div>
+                  <h3 className="mt-5 text-base font-semibold text-gray-900">
+                    {benefit.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-gray-600">
+                    {benefit.description}
+                  </p>
                 </div>
-                <h3 className="mt-5 text-base font-semibold text-gray-900">
-                  {benefit.title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  {benefit.description}
-                </p>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="bg-accent py-20">
-        <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            ¿Necesitas maquinaria para tu proyecto?
-          </h2>
-          <p className="mt-4 text-lg text-gray-300">
-            Contáctanos hoy y recibe una cotización personalizada sin compromiso
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href="/contacto"
-              className="rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark"
-            >
-              Solicitar Cotización
-            </Link>
-            <a
-              href="https://wa.me/56957146992"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-lg border-2 border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10"
-            >
-              WhatsApp Directo
-            </a>
+      {/* CTA Section - Parallax */}
+      <section className="bg-accent py-20 overflow-hidden">
+        <ScrollReveal animation="scaleIn">
+          <div className="mx-auto max-w-4xl px-6 text-center lg:px-8">
+            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              ¿Necesitas maquinaria para tu proyecto?
+            </h2>
+            <p className="mt-4 text-lg text-gray-300">
+              Contáctanos hoy y recibe una cotización personalizada sin compromiso
+            </p>
+            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <MagneticButton>
+                <Link
+                  href="/contacto"
+                  className="block rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark"
+                >
+                  Solicitar Cotización
+                </Link>
+              </MagneticButton>
+              <MagneticButton>
+                <a
+                  href="https://wa.me/56957146992"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block rounded-lg border-2 border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10"
+                >
+                  WhatsApp Directo
+                </a>
+              </MagneticButton>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </>
   );
