@@ -374,7 +374,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
               <MagneticButton>
-                <QuoteButton className="block rounded-lg bg-primary px-8 py-3.5 text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark">
+                <QuoteButton className="block w-full rounded-lg bg-primary px-8 py-3.5 text-center text-base font-semibold text-white shadow-lg transition-all hover:bg-primary-dark">
                   Solicitar Cotización
                 </QuoteButton>
               </MagneticButton>
@@ -383,7 +383,7 @@ export default function Home() {
                   href="https://wa.me/56957146992"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block rounded-lg border-2 border-white/30 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-white/10"
+                  className="block w-full rounded-lg border-2 border-white/30 px-8 py-3.5 text-center text-base font-semibold text-white transition-all hover:bg-white/10"
                 >
                   WhatsApp Directo
                 </a>
